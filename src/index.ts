@@ -5,7 +5,11 @@ import { YoutubeTranscript } from "youtube-transcript";
 const app = new Hono();
 
 app.get("/", async (c) => {
-  const videoId = c.req.query("videoId");
+  return c.json({ message: "hey" });
+});
+
+app.get("/transcript/:videoId", async (c) => {
+  const videoId = c.req.param("videoId");
   if (!videoId) {
     return c.json({
       error: 'The "videoId" parameter is required and must be a string.',
